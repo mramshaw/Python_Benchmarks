@@ -16,10 +16,14 @@ There are performance-related alternatives to Python such as Cython, etc.
 
 ## To Run
 
-Type <kbd>python benchmarks.py</kbd> as follows:
+Run the various tests as described below.
+
+#### List versus Tuple
+
+Type <kbd>python list_versus_tuple.py</kbd> as follows:
 
 ```bash
-$ python benchmarks.py 
+$ python list_versus_tuple.py
 
 Benchmark Report
 ================
@@ -27,29 +31,61 @@ Benchmark Report
 Benchmark List
 --------------
 
-name | rank | runs |    mean |       sd | timesBaseline
------|------|------|---------|----------|--------------
-list |    1 |  100 | 0.07345 | 0.000233 |           1.0
+name | rank | runs |    mean |      sd | timesBaseline
+-----|------|------|---------|---------|--------------
+list |    1 |  100 | 0.06516 | 0.00227 |           1.0
 
 Benchmark Tuple
 ---------------
 
- name | rank | runs |    mean |        sd | timesBaseline
-------|------|------|---------|-----------|--------------
-tuple |    1 |  100 | 0.01828 | 0.0001126 |           1.0
+ name | rank | runs |     mean |        sd | timesBaseline
+------|------|------|----------|-----------|--------------
+tuple |    1 |  100 | 0.009221 | 0.0004186 |           1.0
 
 Each of the above 200 runs were run in random, non-consecutive order by
 `benchmark` v0.1.5 (http://jspi.es/benchmark) with Python 2.7.12
-Linux-4.4.0-141-generic-x86_64 on 2019-01-06 18:06:12.
+Linux-4.4.0-141-generic-x86_64 on 2019-01-06 19:06:14.
 
 $
 ```
 
-[Currently only tests `tuple` versus `List` performance.]
+#### Range versus Xrange
+
+Type <kbd>python range_versus_xrange.py</kbd> as follows:
+
+```bash
+$ python range_versus_xrange.py
+
+Benchmark Report
+================
+
+Benchmark Range
+---------------
+
+ name | rank | runs |    mean |       sd | timesBaseline
+------|------|------|---------|----------|--------------
+range |    1 |  100 | 0.01897 | 0.001786 |           1.0
+
+Benchmark Xrange
+----------------
+
+  name | rank | runs |    mean |       sd | timesBaseline
+-------|------|------|---------|----------|--------------
+xrange |    1 |  100 | 0.00911 | 3.19e-05 |           1.0
+
+Each of the above 200 runs were run in random, non-consecutive order by
+`benchmark` v0.1.5 (http://jspi.es/benchmark) with Python 2.7.12
+Linux-4.4.0-141-generic-x86_64 on 2019-01-06 19:11:46.
+
+owner@G30AB:~/Documents/Python/Python_Benchmarks$
+```
 
 ## Conclusion
 
 As is generally stated, `tuples` are in fact significantly faster than `lists`.
+
+In addition to other supposed benefits, `xrange` siginificantly out-performs `range`
+(at least for Python 2).
 
 ## Versions
 
@@ -60,4 +96,5 @@ As is generally stated, `tuples` are in fact significantly faster than `lists`.
 ## To Do
 
 - [x] Ensure code conforms to `pylint`, `pycodestyle` and `pydocstyle` (at least as far as `benchmark` permits)
+- [x] Add test for `range` versus `xrange`
 - [ ] Add some more benchmarks

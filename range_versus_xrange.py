@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-"""Some generic Python benchmarks."""
+"""Compare range performance versus xrange performance."""
 
 import benchmark
 
 
-class Benchmark_Tuple(benchmark.Benchmark):
-    """Benchmark tuple allocation."""
+class Benchmark_Range(benchmark.Benchmark):
+    """Benchmark range allocation."""
 
     each = 100  # allows for differing number of runs
 
@@ -14,14 +14,14 @@ class Benchmark_Tuple(benchmark.Benchmark):
         """Define the number of benchmarks to perform."""
         self.size = 25000
 
-    def test_tuple(self):
+    def test_range(self):
         """Allocate the specified number of tuples."""
-        for _ in xrange(self.size):
+        for _ in range(self.size):
             _ = (j for j in range(1, 100))
 
 
-class Benchmark_List(benchmark.Benchmark):
-    """Benchmark list allocation."""
+class Benchmark_Xrange(benchmark.Benchmark):
+    """Benchmark xrange allocation."""
 
     each = 100  # allows for differing number of runs
 
@@ -29,10 +29,10 @@ class Benchmark_List(benchmark.Benchmark):
         """Define the number of benchmarks to perform."""
         self.size = 25000
 
-    def test_list(self):
-        """Allocate the specified number of lists."""
+    def test_xrange(self):
+        """Allocate the specified number of tuples."""
         for _ in xrange(self.size):
-            _ = [j for j in range(1, 100)]
+            _ = (j for j in xrange(1, 100))
 
 
 if __name__ == '__main__':
