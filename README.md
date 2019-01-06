@@ -77,15 +77,15 @@ Each of the above 200 runs were run in random, non-consecutive order by
 `benchmark` v0.1.5 (http://jspi.es/benchmark) with Python 2.7.12
 Linux-4.4.0-141-generic-x86_64 on 2019-01-06 19:11:46.
 
-owner@G30AB:~/Documents/Python/Python_Benchmarks$
+$
 ```
 
 ## Conclusion
 
 As is generally stated, `tuples` are in fact significantly faster than `lists`.
 
-In addition to other supposed benefits, `xrange` siginificantly out-performs `range`
-(at least for Python 2).
+In addition to other benefits (such as avoiding memory errors), `xrange`
+significantly outperforms `range` (at least for Python 2).
 
 ## Versions
 
