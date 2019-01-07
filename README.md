@@ -80,12 +80,51 @@ Linux-4.4.0-141-generic-x86_64 on 2019-01-06 19:11:46.
 $
 ```
 
+#### Explicit funtion return versus Default function return
+
+Type <kbd>python explicit_versus_default_return.py</kbd> as follows:
+
+```bash
+$ python explicit_versus_default_return.py
+
+Benchmark Report
+================
+
+Benchmark Default Return
+------------------------
+
+          name | rank | runs |     mean |        sd | timesBaseline
+---------------|------|------|----------|-----------|--------------
+default return |    1 | 1000 | 0.002304 | 1.142e-05 |           1.0
+
+Benchmark Explicit Return
+-------------------------
+
+           name | rank | runs |    mean |        sd | timesBaseline
+----------------|------|------|---------|-----------|--------------
+explicit return |    1 | 1000 | 0.00233 | 0.0002527 |           1.0
+
+Each of the above 2000 runs were run in random, non-consecutive order by
+`benchmark` v0.1.5 (http://jspi.es/benchmark) with Python 2.7.12
+Linux-4.4.0-141-generic-x86_64 on 2019-01-07 18:09:31.
+
+
+$
+```
 ## Conclusion
 
 As is generally stated, `tuples` are in fact significantly faster than `lists`.
 
+[Note that tuples and lists are not interchangeable - lists are mutable whereas
+ tuples are immutable (cannot be changed after their initial allocation). But
+ for many uses - such as ___value objects___ - tuples are fine.]
+
 In addition to other benefits (such as avoiding memory errors), `xrange`
 significantly outperforms `range` (at least for Python 2).
+
+In terms of performance, an explicit function return is pretty much the same
+thing as a defaulted function return (the timing differences are really too
+close to call).
 
 ## Versions
 
@@ -97,4 +136,5 @@ significantly outperforms `range` (at least for Python 2).
 
 - [x] Ensure code conforms to `pylint`, `pycodestyle` and `pydocstyle` (at least as far as `benchmark` permits)
 - [x] Add test for `range` versus `xrange`
+- [x] Add test for Explicit funtion return versus Default function return
 - [ ] Add some more benchmarks
