@@ -80,7 +80,7 @@ Linux-4.4.0-141-generic-x86_64 on 2019-01-06 19:11:46.
 $
 ```
 
-#### Explicit funtion return versus Default function return
+#### Explicit function return versus Default function return
 
 Type <kbd>python explicit_versus_default_return.py</kbd> as follows:
 
@@ -136,5 +136,6 @@ close to call).
 
 - [x] Ensure code conforms to `pylint`, `pycodestyle` and `pydocstyle` (at least as far as `benchmark` permits)
 - [x] Add test for `range` versus `xrange`
-- [x] Add test for Explicit funtion return versus Default function return
+- [x] Add test for Explicit function return versus Default function return
+- [ ] Find an alternative for Python 3; also memory profiling
 - [ ] Add some more benchmarks
