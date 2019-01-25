@@ -20,6 +20,7 @@ class Benchmark_Explicit_Return(benchmark.Benchmark):
             self.explicit_return(1)
 
     def explicit_return(self, dummy):
+        """Explicitly return None."""
         # Add a circular assigmnet so the compiler does not optimize away this function call
         x = dummy
         dummy = x
@@ -41,6 +42,7 @@ class Benchmark_Default_Return(benchmark.Benchmark):
             self.default_return(1)
 
     def default_return(self, dummy):
+        """Return default value (naked return)."""
         # Add a circular assigmnet so the compiler does not optimize away this function call
         x = dummy
         dummy = x
