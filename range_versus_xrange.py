@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# pylint: disable=C0103
+
 """Compare range performance versus xrange performance."""
 
 import benchmark

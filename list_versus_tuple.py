@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# pylint: disable=C0103
+
 """Compare tuple performance versus list performance."""
 
 import benchmark

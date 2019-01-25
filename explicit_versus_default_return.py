@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# pylint: disable=C0103
+
 """Compare explicit return performance versus default return performance."""
 
 import benchmark
@@ -13,6 +15,7 @@ class Benchmark_Explicit_Return(benchmark.Benchmark):
     def setUp(self):
         """Define the number of benchmarks to perform."""
         self.size = 25000
+        self.x = None
 
     def test_explicit_return(self):
         """Allocate the specified number of explicit return calls."""
@@ -21,9 +24,10 @@ class Benchmark_Explicit_Return(benchmark.Benchmark):
 
     def explicit_return(self, dummy):
         """Explicitly return None."""
-        # Add a circular assigmnet so the compiler does not optimize away this function call
-        x = dummy
-        dummy = x
+        # Add a circular assignment so that the compiler
+        #  does not optimize away this function call
+        self.x = dummy
+        dummy = self.x
         return None
 
 
@@ -35,6 +39,7 @@ class Benchmark_Default_Return(benchmark.Benchmark):
     def setUp(self):
         """Define the number of benchmarks to perform."""
         self.size = 25000
+        self.x = None
 
     def test_default_return(self):
         """Perform the specified number of default return calls."""
@@ -43,9 +48,10 @@ class Benchmark_Default_Return(benchmark.Benchmark):
 
     def default_return(self, dummy):
         """Return default value (naked return)."""
-        # Add a circular assigmnet so the compiler does not optimize away this function call
-        x = dummy
-        dummy = x
+        # Add a circular assignment so that the compiler
+        #  does not optimize away this function call
+        self.x = dummy
+        dummy = self.x
 
 
 if __name__ == '__main__':
