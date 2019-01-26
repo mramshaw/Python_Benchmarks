@@ -1,5 +1,7 @@
 # Python_Benchmarks
 
+[![Known Vulnerabilities](http://snyk.io/test/github/mramshaw/Python_Benchmarks/badge.svg?style=plastic&targetFile=requirements.txt)](http://snyk.io/test/github/mramshaw/Python_Benchmarks?style=plastic&targetFile=requirements.txt)
+
 test out some general Python memes
 
 ## Rationale
@@ -200,5 +202,6 @@ lines of code) than a `for` loop.
 - [x] Add test for `range` versus `xrange`
 - [x] Add test for Explicit function return versus Default function return
 - [x] Add test for For loop versus Sum
+- [x] Add a Snyk.io vulnerability scan badge
 - [ ] Find an alternative for Python 3; also memory profiling
 - [ ] Add some more benchmarks
