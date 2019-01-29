@@ -70,9 +70,6 @@ disable GC while our benchmarks are running.
 This will probably result in a more useful graph of memory usage, as no memory should
 be reclaimed while our benchmarks are being run.
 
-Interestingly, this simple optimization results in an immediate improvement in our
-benchmark run times.
-
 #### With the default behaviour (GC under runtime control)
 
 ```bash
@@ -139,14 +136,14 @@ Mean __0.06467__ and Std. Dev. __0.003457__, Mean __0.00926__ and Std. Dev. __0.
 
 Test | Before / After | Mean | Std. Dev. | Mean | Std. Dev. | Results
 ---- | -------------- | ---- | --------- | ---- | --------- | -------
-List versus Tuple | Usual GC | 0.06922 | 0.0126 | 0.009339 | 1.175e-05
-List versus Tuple | GC Off | 0.06467 | 0.003457 | 0.00926 | 0.0007694 | Slight decrease in both exection times; increase in entropy in both cases
-Range versus Xrange | Usual GC | 0.01832 | 0.0001215 | 0.009139 | 6.165e-05
-Range versus Xrange | GC Off | 0.01963 | 0.0002059 | 0.009128 | 6.597e-05 | Slight increase in `range` execution time; no change in in `xrange` execution time
-Explicit return versus Default return | Usual GC | 0.003286 | 2.28e-05 | 0.003344 | 0.0002187
-Explicit return versus Default return | GC Off | 0.00336 | 6.077e-05 | 0.003483 | 0.0001302 | Slight increase in both execution times; entropy moot
-For loop summation versus Sum function | Usual GC | 0.0006326 | 8.786e-05 | 0.0001356 | 8.84e-07
-For loop summation versus Sum function | GC Off | 0.0006081 | 1.367e-05 | 0.0001352 | 2.186e-06 | Slight increase `for loop` execution time; slight increase in `sum` entropy
+List vs. Tuple | Usual GC | 0.06922 | 0.0126 | 0.009339 | 1.175e-05
+List vs. Tuple | GC Off | 0.06467 | 0.003457 | 0.00926 | 0.0007694 | Slight decrease in both execution times
+Range vs. Xrange | Usual GC | 0.01832 | 0.0001215 | 0.009139 | 6.165e-05
+Range vs. Xrange | GC Off | 0.01963 | 0.0002059 | 0.009128 | 6.597e-05 | Slight increase in `range` execution time and entropy; no change for `xrange`
+Explicit return vs. Default return | Usual GC | 0.003286 | 2.28e-05 | 0.003344 | 0.0002187
+Explicit return vs. Default return | GC Off | 0.00336 | 6.077e-05 | 0.003483 | 0.0001302 | Slight increase in both execution times
+For loop summation vs. Sum function | Usual GC | 0.0006326 | 8.786e-05 | 0.0001356 | 8.84e-07
+For loop summation vs. Sum function | GC Off | 0.0006081 | 1.367e-05 | 0.0001352 | 2.186e-06 | Slight decrease in `for loop` execution time; slight increase in `sum` entropy
 
 I am reading the Standard Deviation of the results as a measure of execution entropy.
 
