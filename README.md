@@ -137,10 +137,10 @@ Mean __0.06437__ and Std. Dev. __0.003457__, Mean __0.00926__ and Std. Dev. __0.
 
 #### Difference
 
-|Test||Mean|Std. Dev.|Mean|Std. Dev.|
-|====||====|==== ====|====|==== ====|
-|List versus Tuple|Usual GC|0.06922|0.0126|0.009339|1.175e-05|
-||GC Off|0.06437|0.003457|0.00926|0.0007694|
+Test||Mean|Std. Dev.|Mean|Std. Dev.
+----||----|---- ----|----|---- ----
+List versus Tuple|Usual GC|0.06922|0.0126|0.009339|1.175e-05
+|GC Off|0.06437|0.003457|0.00926|0.0007694
 
 ## To Run
 
