@@ -133,14 +133,17 @@ Linux-4.4.0-141-generic-x86_64 on 2019-01-29 16:06:05.
 $
 ```
 
-Mean __0.06437__ and Std. Dev. __0.003457__, Mean __0.00926__ and Std. Dev. __0.0007694__.
+Mean __0.06467__ and Std. Dev. __0.003457__, Mean __0.00926__ and Std. Dev. __0.0007694__.
 
 #### Difference
 
-Test | | Mean | Std. Dev. | Mean | Std. Dev.
----- | | ---- | ---- ---- | ---- | ---- ----
+Test | Before / After | Mean | Std. Dev. | Mean | Std. Dev.
+---- | -------------- | ---- | --------- | ---- | ---------
 List versus Tuple | Usual GC | 0.06922 | 0.0126 | 0.009339 | 1.175e-05
- | GC Off | 0.06437 | 0.003457 | 0.00926 | 0.0007694
+List versus Tuple | GC Off | 0.06467 | 0.003457 | 0.00926 | 0.0007694
+
+So disabling GC has improved the execution stats - and the entropy
+(the Standard Deviation of the results is greatly reduced).
 
 ## To Run
 
