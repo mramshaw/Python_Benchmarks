@@ -4,6 +4,8 @@
 
 """Compare explicit return performance versus default return performance."""
 
+import gc
+
 import benchmark
 
 
@@ -55,4 +57,5 @@ class Benchmark_Default_Return(benchmark.Benchmark):
 
 
 if __name__ == '__main__':
+    gc.disable()
     benchmark.main(each=5000, format="markdown", numberFormat="%.4g")

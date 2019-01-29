@@ -4,6 +4,8 @@
 
 """Compare 'for loop' performance versus 'sum' performance."""
 
+import gc
+
 import benchmark
 
 
@@ -42,4 +44,5 @@ class Benchmark_Sum_with_xrange(benchmark.Benchmark):
 
 
 if __name__ == '__main__':
+    gc.disable()
     benchmark.main(each=50000, format="markdown", numberFormat="%.4g")
