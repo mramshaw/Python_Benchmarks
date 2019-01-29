@@ -4,6 +4,24 @@
 
 test out some general Python memes
 
+The contents are as follows:
+
+* [Rationale](#rationale)
+* [Premature Optimization](#premature-optimization)
+* [Memory Profiling](#memory-profiling)
+* [Garbage Collection](#garbage-collection)
+    * [With the default behaviour (GC under runtime control)](#with-the-default-behaviour-gc-under-runtime-control)
+    * [With GC disabled](#with-gc-disabled)
+    * [Difference](#difference)
+* [To Run](#to-run)
+    * [List versus Tuple](#list-versus-tuple)
+    * [Range versus Xrange](#range-versus-xrange)
+    * [Explicit function return versus Default function return](#explicit-function-return-versus-default-function-return)
+    * [For loop summation versus Sum function](#for-loop-summation-versus-sum-function)
+* [Conclusion](#conclusion)
+* [Versions](#versions)
+* [To Do](#to-do)
+
 ## Rationale
 
 A lot of things are stated in Python writings.
@@ -41,6 +59,88 @@ There are effective performance optimizations (such as enabling a JIT compiler w
 In general, my experience has been that benchmarking with JIT compilers is unreliable.
 
 Even a good optimizing compiler can make comparative benchmarking troublesome.
+
+## Garbage Collection
+
+Garbage Collection is controlled by the Python runtime - however, the random nature of
+GC can give rise to unexpected slowdowns at inopportune times. So we will take a leaf
+from the [timeit code](http://github.com/python/cpython/blob/3.7/Lib/timeit.py) and
+disable GC while our benchmarks are running.
+
+This will probably result in a more useful graph of memory usage, as no memory should
+be reclaimed while our benchmarks are being run.
+
+Interestingly, this simple optimization results in an immediate improvement in our
+benchmark run times.
+
+#### With the default behaviour (GC under runtime control)
+
+```bash
+$ python list_versus_tuple.py
+
+Benchmark Report
+================
+
+Benchmark List
+--------------
+
+name | rank | runs |    mean |     sd | timesBaseline
+-----|------|------|---------|--------|--------------
+list |    1 |  100 | 0.06922 | 0.0126 |           1.0
+
+Benchmark Tuple
+---------------
+
+ name | rank | runs |     mean |        sd | timesBaseline
+------|------|------|----------|-----------|--------------
+tuple |    1 |  100 | 0.009339 | 1.175e-05 |           1.0
+
+Each of the above 200 runs were run in random, non-consecutive order by
+`benchmark` v0.1.5 (http://jspi.es/benchmark) with Python 2.7.12
+Linux-4.4.0-141-generic-x86_64 on 2019-01-29 16:05:14.
+
+$
+```
+
+Mean __0.06922__ and Std. Dev. __0.0126__, Mean __0.009339__ and Std. Dev. __1.175e-05__.
+
+#### With GC disabled
+
+```bash
+$ python list_versus_tuple.py
+
+Benchmark Report
+================
+
+Benchmark List
+--------------
+
+name | rank | runs |    mean |       sd | timesBaseline
+-----|------|------|---------|----------|--------------
+list |    1 |  100 | 0.06467 | 0.003457 |           1.0
+
+Benchmark Tuple
+---------------
+
+ name | rank | runs |    mean |        sd | timesBaseline
+------|------|------|---------|-----------|--------------
+tuple |    1 |  100 | 0.00926 | 0.0007694 |           1.0
+
+Each of the above 200 runs were run in random, non-consecutive order by
+`benchmark` v0.1.5 (http://jspi.es/benchmark) with Python 2.7.12
+Linux-4.4.0-141-generic-x86_64 on 2019-01-29 16:06:05.
+
+$
+```
+
+Mean __0.06437__ and Std. Dev. __0.003457__, Mean __0.00926__ and Std. Dev. __0.0007694__.
+
+#### Difference
+
+|Test||Mean|Std. Dev.|Mean|Std. Dev.|
+|====||====|==== ====|====|==== ====|
+|List versus Tuple|Usual GC|0.06922|0.0126|0.009339|1.175e-05|
+||GC Off|0.06437|0.003457|0.00926|0.0007694|
 
 ## To Run
 
@@ -136,7 +236,6 @@ Each of the above 2000 runs were run in random, non-consecutive order by
 `benchmark` v0.1.5 (http://jspi.es/benchmark) with Python 2.7.12
 Linux-4.4.0-141-generic-x86_64 on 2019-01-07 18:09:31.
 
-
 $
 ```
 
@@ -199,6 +298,7 @@ lines of code) than a `for` loop.
 
 - [x] Ensure code conforms to `pylint`, `pycodestyle` and `pydocstyle`
 - [x] Add `pylint` exemptions for `benchmark` coding standards
+- [x] Disable Garbage Collection for duration of benchmarks
 - [x] Add test for `range` versus `xrange`
 - [x] Add test for Explicit function return versus Default function return
 - [x] Add test for For loop versus Sum

@@ -4,6 +4,8 @@
 
 """Compare tuple performance versus list performance."""
 
+import gc
+
 import benchmark
 
 
@@ -38,4 +40,5 @@ class Benchmark_List(benchmark.Benchmark):
 
 
 if __name__ == '__main__':
+    gc.disable()
     benchmark.main(each=500, format="markdown", numberFormat="%.4g")
